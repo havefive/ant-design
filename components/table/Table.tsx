@@ -56,6 +56,7 @@ export interface TableRowSelection<T> {
   onSelectAll?: (selected: boolean, selectedRows: Object[], changeRows: Object[]) => any;
   onSelectInvert?: (selectedRows: Object[]) => any;
   selections?: SelectionDecorator[] | boolean;
+  hideDefaultSelections?: boolean;
 }
 
 export interface TableProps<T> {
@@ -85,7 +86,7 @@ export interface TableProps<T> {
   showHeader?: boolean;
   footer?: (currentPageData: Object[]) => React.ReactNode;
   title?: (currentPageData: Object[]) => React.ReactNode;
-  scroll?: { x?: boolean | number, y?: boolean | number};
+  scroll?: { x?: boolean | number | string, y?: boolean | number | string };
   childrenColumnName?: string;
   bodyStyle?: React.CSSProperties;
   className?: string;
@@ -150,7 +151,7 @@ export default class Table<T> extends React.Component<TableProps<T>, any> {
     warning(
       !('columnsPageRange' in props || 'columnsPageSize' in props),
       '`columnsPageRange` and `columnsPageSize` are removed, please use ' +
-      'fixed columns instead, see: http://u.ant.design/fixed-columns.',
+      'fixed columns instead, see: https://u.ant.design/fixed-columns.',
     );
 
     this.columns = props.columns || normalizeColumns(props.children);
@@ -551,7 +552,12 @@ export default class Table<T> extends React.Component<TableProps<T>, any> {
       selectionDirty: true,
     });
     // when select custom selection, callback selections[n].onSelect
-    if (index > 1 && typeof onSelectFunc === 'function') {
+    const { rowSelection } = this.props;
+    let customSelectionStartIndex = 2;
+    if (rowSelection && rowSelection.hideDefaultSelections) {
+      customSelectionStartIndex = 0;
+    }
+    if (index >= customSelectionStartIndex && typeof onSelectFunc === 'function') {
       return onSelectFunc(changeableRowKeys);
     }
     this.setSelectedRowKeys(selectedRowKeys, {
@@ -629,7 +635,7 @@ export default class Table<T> extends React.Component<TableProps<T>, any> {
       rowKey(record, index) :  record[rowKey as string];
     warning(recordKey !== undefined,
       'Each record in dataSource of table should have a unique `key` prop, or set `rowKey` to an unique primary key,' +
-      'see http://u.ant.design/table-row-key',
+      'see https://u.ant.design/table-row-key',
     );
     return recordKey === undefined ? index : recordKey;
   }
@@ -669,6 +675,7 @@ export default class Table<T> extends React.Component<TableProps<T>, any> {
             prefixCls={prefixCls}
             onSelect={this.handleSelectRow}
             selections={rowSelection.selections}
+            hideDefaultSelections={rowSelection.hideDefaultSelections}
             getPopupContainer={this.getPopupContainer}
           />
         );
@@ -879,8 +886,8 @@ export default class Table<T> extends React.Component<TableProps<T>, any> {
     const { childrenColumnName = 'children' } = this.props;
     return data.sort(sorterFn).map(item => (item[childrenColumnName] ? {
       ...item,
-        [childrenColumnName]: this.recursiveSort(item[childrenColumnName], sorterFn),
-      } : item));
+      [childrenColumnName]: this.recursiveSort(item[childrenColumnName], sorterFn),
+    } : item));
   }
 
   getLocalData() {

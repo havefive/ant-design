@@ -46,6 +46,7 @@ export default class Mention extends React.Component<MentionProps, MentionState>
     console.warn('Mention.toEditorState is deprecated. Use toContentState instead.');
     return toEditorState(text);
   }
+  private mentionEle: any;
   constructor(props) {
     super(props);
     this.state = {
@@ -79,7 +80,14 @@ export default class Mention extends React.Component<MentionProps, MentionState>
   defaultSearchChange(value: String): void {
     const searchValue = value.toLowerCase();
     const filteredSuggestions = (this.props.suggestions || []).filter(
-      suggestion => suggestion.toLowerCase().indexOf(searchValue) !== -1,
+      suggestion => {
+        if (suggestion.type && suggestion.type === Nav) {
+          return suggestion.props.value ?
+            suggestion.props.value.toLowerCase().indexOf(searchValue) !== -1
+            : true;
+        }
+        return suggestion.toLowerCase().indexOf(searchValue) !== -1;
+      },
     );
     this.setState({
       suggestions: filteredSuggestions,
@@ -102,6 +110,12 @@ export default class Mention extends React.Component<MentionProps, MentionState>
       this.props.onBlur(ev);
     }
   }
+  focus = () => {
+    this.mentionEle._editor.focus();
+  }
+  mentionRef = ele => {
+    this.mentionEle = ele;
+  }
   render() {
     const { className = '', prefixCls, loading } = this.props;
     const { suggestions, focus } = this.state;
@@ -117,6 +131,7 @@ export default class Mention extends React.Component<MentionProps, MentionState>
       <RcMention
         {...this.props}
         className={cls}
+        ref={this.mentionRef}
         onSearchChange={this.onSearchChange}
         onChange={this.onChange}
         onFocus={this.onFocus}

@@ -31,13 +31,13 @@ Ant Design 依次提供了三级选项卡，分别用于不同的场景。
 | onPrevClick      | prev 按钮被点击的回调                         | Function | 无            |
 | onNextClick      | next 按钮被点击的回调                         | Function | 无            |
 | tabBarExtraContent | tab bar 上额外的元素                       | React.ReactNode | 无          |
-| tabBarStyle      | tar bar 的样式对象                           | object   | -             |
+| tabBarStyle      | tab bar 的样式对象                           | object   | -             |
 | type | 页签的基本样式，可选 `line`、`card` `editable-card` 类型   | string   | 'line'      |
 | size | 大小，提供 `default` 和 `small` 两种大小，仅当 `type="line"` 时生效。  | string   | 'default'      |
 | tabPosition | 页签位置，可选值有 `top` `right` `bottom` `left`  | string   | 'top'      |
 | onEdit | 新增和删除页签的回调，在 `type="editable-card"` 时有效 | (targetKey, action): void | 无 |
 | hideAdd | 是否隐藏加号图标，在 `type="editable-card"` 时有效 | boolean   | false    |
-| animated | 是否使用动画切换 Tabs，在 `tabPosition=top|bottom` 时有效 | boolean \| {inkBar:boolean, tabPane:boolean} | true |
+| animated | 是否使用动画切换 Tabs，在 `tabPosition=top|bottom` 时有效 | boolean \| {inkBar:boolean, tabPane:boolean} | true, 当 type="card" 时为 false |
 
 ### Tabs.TabPane
 
@@ -45,3 +45,4 @@ Ant Design 依次提供了三级选项卡，分别用于不同的场景。
 |------|------------------|-------------------------|--------|
 | key  | 对应 activeKey   | string                  | 无     |
 | tab  | 选项卡头显示文字 | string\|ReactNode | 无     |
+| forceRender | 被隐藏时是否渲染 DOM 结构 | boolean | false |

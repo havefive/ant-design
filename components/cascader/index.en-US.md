@@ -25,6 +25,7 @@ Cascade selection box.
 | defaultValue | initial selected value | [CascaderOptionType](https://git.io/vMMoK)[]  |[] |
 | value | selected value | [CascaderOptionType](https://git.io/vMMoK)[] | - |
 | onChange | callback when finishing cascader select | `(value, selectedOptions) => void` | - |
+| onPopupVisibleChange | callback when popup shown or hidden | `(value) => void` | - |
 | displayRender | render function of displaying selected options | `(label, selectedOptions) => ReactNode` | `label => label.join(' / ')` |
 | style | additional style | string | - |
 | className | additional css class | string | - |
@@ -39,7 +40,7 @@ Cascade selection box.
 | showSearch | Whether show search input in single mode. | boolean\|object | false |
 | notFoundContent | Specify content to show when no result matches. | string | 'Not Found' |
 | loadData  | To load option lazily, and it cannot work with `showSearch` | `(selectedOptions) => void`  | - |
-| getPopupContainer | Parent Node which the selector should be rendered to. Default to `body`. When position issues happen, try to modify it into scrollable content and position it relative.[example](http://codepen.io/anon/pen/xVBOVQ?editors=001) | Function(triggerNode) | () => document.body |
+| getPopupContainer | Parent Node which the selector should be rendered to. Default to `body`. When position issues happen, try to modify it into scrollable content and position it relative.[example](https://codepen.io/afc163/pen/zEjNOy?editors=0010) | Function(triggerNode) | () => document.body |
 
 Fields in `showSearch`:
 
