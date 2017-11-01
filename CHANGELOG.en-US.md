@@ -17,6 +17,31 @@ If you want to read change logs before `2.0.0`, please visit [GitHub](https://gi
 
 ---
 
+## 2.13.8
+
+`2017-10-27`
+
+- 🌟 Add a mirror site in China: [http://ant-design.gitee.io](http://ant-design.gitee.io)
+- 🐞 Fix `ref warning` of Menu in React 16. [#8037](https://github.com/ant-design/ant-design/pull/8037) [@vgeyi](https://github.com/vgeyi)
+- 🐞 Fix extra padding of loading Card when it is too wide. [ad9809ec](https://github.com/ant-design/ant-design/commit/ad9809ec2e29275c9348537b04584dcfdc96659a)
+- 📝 Add sorted API to enhance readability of docs. [#7896](https://github.com/ant-design/ant-design/pull/7896)[@monkindey](https://github.com/monkindey)
+- 📝 Improve Modal docs of how to setting styles. [#7840](https://github.com/ant-design/ant-design/issues/7840) [@kossel](https://github.com/kossel)
+- 🐞 Fix the inner shadow of Input on IOS. [#7974](https://github.com/ant-design/ant-design/pull/7974) [@cnahliu](https://github.com/cnahliu)
+
+## 2.13.7
+
+`2017-10-22`
+
+- 🐞 Fix input height in AutoComplete. [#7918](https://github.com/ant-design/ant-design/issues/7918)
+- 🐞 Fix Cascader `inputPrefixCls` can not be fully effective. [#7945](https://github.com/ant-design/ant-design/pull/7945) [@vgeyi](https://github.com/vgeyi)
+- 🐞 Fix extra margin in sider Layout. [#7967](https://github.com/ant-design/ant-design/issues/7967)
+- 🐞 Fix RangePicker can not close panel when click presetted ranges. [#7747](https://github.com/ant-design/ant-design/issues/7747)
+- Table
+  - 🐞 Fix Radio can not be centered in Table column. [#7969](https://github.com/ant-design/ant-design/issues/7969)
+  - 🐞 Fix Table filter can't show after remove fixed setting. [#7909](https://github.com/ant-design/ant-design/issues/7909)
+- 🌟 Add `scrollNumberPrefixCls` prop for Badge. [#7882](https://github.com/ant-design/ant-design/pull/7882) [@vgeyi](https://github.com/vgeyi)
+- 🌟 Add some less variables. [#7886](https://github.com/ant-design/ant-design/issues/7886) [@syssam](https://github.com/syssam)
+
 ## 2.13.6
 
 `2017-10-12`

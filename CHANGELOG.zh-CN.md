@@ -17,6 +17,31 @@ timeline: true
 
 ---
 
+## 2.13.8
+
+`2017-10-27`
+
+- 🌟 新增国内镜像文档站点：[http://ant-design.gitee.io](http://ant-design.gitee.io)
+- 🐞 修复了 Menu 在 React 16 下 `ref warning` 的问题。[#8037](https://github.com/ant-design/ant-design/pull/8037) [@vgeyi](https://github.com/vgeyi)
+- 🐞 修复了 Card 在比较宽的时候 `loading` 样式的问题。[ad9809ec](https://github.com/ant-design/ant-design/commit/ad9809ec2e29275c9348537b04584dcfdc96659a)
+- 📝 引入了 API 展示排序规则，增强文档易读性。[#7896](https://github.com/ant-design/ant-design/pull/7896)[@monkindey](https://github.com/monkindey)
+- 📝 优化了 Modal 设置样式的文档。[#7840](https://github.com/ant-design/ant-design/issues/7840) [@kossel](https://github.com/kossel)
+- 🐞 修复了 IOS 下 Input 有内阴影的样式问题。[#7974](https://github.com/ant-design/ant-design/pull/7974) [@cnahliu](https://github.com/cnahliu)
+
+## 2.13.7
+
+`2017-10-22`
+
+- 🐞 修复了 AutoComplete 的 input 高度。 [#7918](https://github.com/ant-design/ant-design/issues/7918)
+- 🐞 修复了 Cascader `inputPrefixCls` 不能完全生效的问题。[#7945](https://github.com/ant-design/ant-design/pull/7945) [@vgeyi](https://github.com/vgeyi)
+- 🐞 修复了有侧边栏的 Layout 存在多余外边距的问题。[#7967](https://github.com/ant-design/ant-design/issues/7967)
+- 🐞 修复了 RangePicker 在选中预设范围时间时不能关闭选择面板的问题。[#7747](https://github.com/ant-design/ant-design/issues/7747)
+- Table
+  - 🐞 修复了 Table 列中 Radio 选择框无法居中的问题。[#7969](https://github.com/ant-design/ant-design/issues/7969)
+  - 🐞 修复了去掉 `fixed` 属性设置后 Table 列无法进行筛选的问题。[#7909](https://github.com/ant-design/ant-design/issues/7909)
+- 🌟 Badge 新增 `scrollNumberPrefixCls` 属性。[#7882](https://github.com/ant-design/ant-design/pull/7882) [@vgeyi](https://github.com/vgeyi)
+- 🌟 补充了一些 less 变量。[#7886](https://github.com/ant-design/ant-design/issues/7886) [@syssam](https://github.com/syssam)
+
 ## 2.13.6
 
 `2017-10-12`

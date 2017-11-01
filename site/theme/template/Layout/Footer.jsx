@@ -94,6 +94,9 @@ class Footer extends React.Component {
               </a>
             </div>
             <div>
+              <a href="http://pro.ant.design">Ant Design Pro</a>
+            </div>
+            <div>
               <a href="http://mobile.ant.design">Ant Design Mobile</a>
             </div>
             <div>
@@ -104,6 +107,11 @@ class Footer extends React.Component {
             <div>
               <a target="_blank " href="https://github.com/websemantics/awesome-ant-design">
                 <FormattedMessage id="app.footer.awesome" />
+              </a>
+            </div>
+            <div>
+              <a target="_blank " href="http://ant-design.gitee.io/">
+                <FormattedMessage id="app.footer.chinamirror" />
               </a>
             </div>
             <div style={{ marginTop: 12 }}>
@@ -164,11 +172,6 @@ class Footer extends React.Component {
               <a target="_blank" rel="noopener noreferrer" href="http://ux.ant.design">Ant UX</a>
               <span> - </span>
               <FormattedMessage id="app.footer.antux" />
-            </div>
-            <div>
-              <a target="_blank" rel="noopener noreferrer" href="http://enclose.io/">Enclose.IO</a>
-              <span> - </span>
-              <FormattedMessage id="app.footer.encloseio" />
             </div>
           </li>
           <li>
