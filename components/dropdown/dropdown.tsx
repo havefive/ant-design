@@ -5,9 +5,8 @@ import DropdownButton from './dropdown-button';
 import warning from '../_util/warning';
 
 export interface DropDownProps {
-  trigger?: ('click' | 'hover')[];
+  trigger?: ('click' | 'hover'| 'contextMenu')[];
   overlay: React.ReactNode;
-  style?: React.CSSProperties;
   onVisibleChange?: (visible?: boolean) => void;
   visible?: boolean;
   disabled?: boolean;
