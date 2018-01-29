@@ -7,8 +7,7 @@ import classNames from 'classnames';
 import Icon from '../icon';
 import warning from '../_util/warning';
 import callMoment from '../_util/callMoment';
-
-export type RangePickerValue = moment.Moment[];
+import { RangePickerValue } from './interface';
 
 export interface RangePickerState {
   value?: RangePickerValue;
@@ -17,21 +16,21 @@ export interface RangePickerState {
   hoverValue?: RangePickerValue;
 }
 
-function getShowDateFromValue(value: moment.Moment[]): moment.Moment[] | undefined {
+function getShowDateFromValue(value: RangePickerValue) {
   const [start, end] = value;
   // value could be an empty array, then we should not reset showDate
   if (!start && !end) {
     return;
   }
   const newEnd = end && end.isSame(start, 'month') ? end.clone().add(1, 'month') : end;
-  return [start, newEnd];
+  return [start, newEnd] as RangePickerValue;
 }
 
 function formatValue(value: moment.Moment | undefined, format: string): string {
   return (value && value.format(format)) || '';
 }
 
-function pickerValueAdapter(value?: moment.Moment | moment.Moment[]): moment.Moment[] | undefined {
+function pickerValueAdapter(value?: moment.Moment | RangePickerValue): RangePickerValue | undefined {
   if (!value) {
     return;
   }
@@ -46,6 +45,21 @@ function isEmptyArray(arr: any) {
     return arr.length === 0 || arr.every(i => !i);
   }
   return false;
+}
+
+function fixLocale(value: RangePickerValue | undefined, localeCode: string) {
+  if (!localeCode) {
+    return;
+  }
+  if (!value || value.length === 0) {
+    return;
+  }
+  if (value[0]) {
+    value[0]!.locale(localeCode);
+  }
+  if (value[1]) {
+    value[1]!.locale(localeCode);
+  }
 }
 
 export default class RangePicker extends React.Component<any, RangePickerState> {
@@ -103,7 +117,7 @@ export default class RangePicker extends React.Component<any, RangePickerState> 
 
   clearHoverValue = () => this.setState({ hoverValue: [] });
 
-  handleChange = (value: moment.Moment[]) => {
+  handleChange = (value: RangePickerValue) => {
     const props = this.props;
     if (!('value' in props)) {
       this.setState(({ showDate }) => ({
@@ -122,6 +136,10 @@ export default class RangePicker extends React.Component<any, RangePickerState> 
       this.setState({ open });
     }
 
+    if (open === false) {
+      this.clearHoverValue();
+    }
+
     const { onOpenChange } = this.props;
     if (onOpenChange) {
       onOpenChange(open);
@@ -132,7 +150,7 @@ export default class RangePicker extends React.Component<any, RangePickerState> 
 
   handleHoverChange = (hoverValue: any) => this.setState({ hoverValue });
 
-  setValue(value: moment.Moment[], hidePanel?: boolean) {
+  setValue(value: RangePickerValue, hidePanel?: boolean) {
     this.handleChange(value);
     if ((hidePanel || !this.props.showTime) && !('open' in this.props)) {
       this.setState({ open: false });
@@ -192,14 +210,9 @@ export default class RangePicker extends React.Component<any, RangePickerState> 
       ranges, onOk, locale, localeCode, format,
       dateRender, onCalendarChange,
     } = props;
-    if (value && localeCode) {
-      if (value[0]) {
-        value[0].locale(localeCode);
-      }
-      if (value[1]) {
-        value[1].locale(localeCode);
-      }
-    }
+
+    fixLocale(value, localeCode);
+    fixLocale(showDate, localeCode);
 
     warning(!('onOK' in props), 'It should be `RangePicker[onOk]`, instead of `onOK`!');
 
