@@ -79,7 +79,7 @@ class App extends React.Component {
     };
   }
   handleChange(date) {
-    message.info('Selected Date: ' + date.toString());
+    message.info('Selected Date: ' + (date ? date.toString() : ''));
     this.setState({ date });
   }
   render() {
@@ -87,7 +87,7 @@ class App extends React.Component {
       <LocaleProvider locale={frFR}>
         <div style={{ width: 400, margin: '100px auto' }}>
           <DatePicker onChange={value => this.handleChange(value)} />
-          <div style={{ marginTop: 20 }}>Date: {this.state.date.toString()}</div>
+          <div style={{ marginTop: 20 }}>Date: {this.state.date && this.state.date.toString()}</div>
         </div>
       </LocaleProvider>
     );
@@ -179,7 +179,7 @@ If you see logs like below screenshot, you might be importing all components by 
 You are using a whole package of antd, please use https://www.npmjs.com/package/babel-plugin-import to reduce app bundle size.
 ```
 
-> ![](https://zos.alipayobjects.com/rmsportal/GHIRszVcmjccgZRakJDQ.png)
+> ![console warning](https://zos.alipayobjects.com/rmsportal/GHIRszVcmjccgZRakJDQ.png)
 
 However, we can import individual components on demand:
 

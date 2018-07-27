@@ -27,7 +27,6 @@ function getStyle() {
     #header #logo {
       padding: 0;
     }
-    #header .ant-row > div:last-child .ant-select,
     #header .ant-row > div:last-child .ant-menu,
     #header .nav-phone-icon {
       display: none;
@@ -38,14 +37,6 @@ function getStyle() {
     footer .footer-wrap {
       width: 100%;
       padding: 0;
-    }
-    footer .bottom-bar {
-      margin: auto;
-      max-width: 1200px;
-      padding: 16px 24px;
-    }
-    footer  .bottom-bar {
-      border-top: none;
     }
     footer .footer-wrap .ant-row {
       width: 100%;
@@ -70,11 +61,12 @@ class Home extends React.Component {
     intl: PropTypes.object.isRequired,
     isMobile: PropTypes.bool.isRequired,
   }
+
   render() {
     const { isMobile, intl } = this.context;
     const childProps = { ...this.props, isMobile, locale: intl.locale };
     return (
-      <DocumentTitle title={`Ant Design - ${this.props.intl.formatMessage({ id: 'app.home.slogan' })}`}>
+      <DocumentTitle title={`Ant Design - ${intl.formatMessage({ id: 'app.home.slogan' })}`}>
         <div className="main-wrapper">
           <Banner {...childProps} />
           <Page1 {...childProps} />

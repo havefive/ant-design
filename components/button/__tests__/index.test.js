@@ -26,10 +26,25 @@ describe('Button', () => {
       <Button><Icon type="search" />按钮</Button>
     );
     expect(wrapper2).toMatchSnapshot();
+    // should not insert space when there is icon
+    const wrapper3 = render(
+      <Button icon="search">按钮</Button>
+    );
+    expect(wrapper3).toMatchSnapshot();
+    // should not insert space when there is icon while loading
+    const wrapper4 = render(
+      <Button icon="search" loading>按钮</Button>
+    );
+    expect(wrapper4).toMatchSnapshot();
+    // should insert space while loading
+    const wrapper5 = render(
+      <Button loading>按钮</Button>
+    );
+    expect(wrapper5).toMatchSnapshot();
   });
 
   it('renders Chinese characters correctly in HOC', () => {
-    const Text = props => <span>{props.children}</span>;
+    const Text = ({ children }) => <span>{children}</span>;
     const wrapper = mount(
       <Button><Text>按钮</Text></Button>
     );
@@ -46,7 +61,7 @@ describe('Button', () => {
     expect(wrapper.find('.ant-btn').hasClass('ant-btn-two-chinese-chars')).toBe(true);
   });
 
-  it('have static perperty for type detecting', () => {
+  it('have static property for type detecting', () => {
     const wrapper = mount(
       <Button>Button Text</Button>
     );
@@ -59,11 +74,14 @@ describe('Button', () => {
       state = {
         loading: false,
       };
+
       enterLoading = () => {
         this.setState({ loading: true });
       }
+
       render() {
-        return <Button loading={this.state.loading} onClick={this.enterLoading}>Button</Button>;
+        const { loading } = this.state;
+        return <Button loading={loading} onClick={this.enterLoading}>Button</Button>;
       }
     }
     const wrapper = mount(
@@ -79,11 +97,14 @@ describe('Button', () => {
       state = {
         loading: false,
       };
+
       enterLoading = () => {
         this.setState({ loading: { delay: 1000 } });
       }
+
       render() {
-        return <Button loading={this.state.loading} onClick={this.enterLoading}>Button</Button>;
+        const { loading } = this.state;
+        return <Button loading={loading} onClick={this.enterLoading}>Button</Button>;
       }
     }
     const wrapper = mount(

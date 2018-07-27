@@ -18,16 +18,18 @@ import { Alert } from 'antd';
 
 class App extends React.Component {
   state = {
-    visiable: true,
+    visible: true,
   }
+
   handleClose = () => {
-    this.setState({ visiable: false });
+    this.setState({ visible: false });
   }
+
   render() {
     return (
       <div>
         {
-          this.state.visiable ? (
+          this.state.visible ? (
             <Alert
               message="Alert Message Text"
               type="success"
@@ -43,6 +45,6 @@ class App extends React.Component {
 }
 
 ReactDOM.render(
-  <App />
-, mountNode);
+  <App />,
+  mountNode);
 ````

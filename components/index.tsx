@@ -2,6 +2,7 @@
 // this file is not used if use https://github.com/ant-design/babel-plugin-import
 const ENV = process.env.NODE_ENV;
 if (ENV !== 'production' &&
+    ENV !== 'test' &&
     typeof console !== 'undefined' &&
     console.warn &&
     typeof window !== 'undefined') {
@@ -49,6 +50,8 @@ export { default as DatePicker } from './date-picker';
 export { default as Divider } from './divider';
 
 export { default as Dropdown } from './dropdown';
+
+export { default as Drawer } from './drawer';
 
 export { default as Form } from './form';
 
